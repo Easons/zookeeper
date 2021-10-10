@@ -35,6 +35,9 @@ public class WatchCallBack  implements Watcher ,AsyncCallback.StatCallback, Asyn
     }
 
 
+    /**
+     * 封装的等待方法
+     */
     public void aWait(){
         zk.exists("/AppConf",this,this ,"ABC");
         try {
@@ -44,6 +47,14 @@ public class WatchCallBack  implements Watcher ,AsyncCallback.StatCallback, Asyn
         }
     }
 
+    /**
+     * 节点信息回调
+     * @param rc
+     * @param path
+     * @param ctx
+     * @param data
+     * @param stat
+     */
     @Override
     public void processResult(int rc, String path, Object ctx, byte[] data, Stat stat) {
 
@@ -56,6 +67,13 @@ public class WatchCallBack  implements Watcher ,AsyncCallback.StatCallback, Asyn
 
     }
 
+    /**
+     * 节点存在回调
+     * @param rc
+     * @param path
+     * @param ctx
+     * @param stat
+     */
     @Override
     public void processResult(int rc, String path, Object ctx, Stat stat) {
         if(stat != null){
@@ -64,6 +82,10 @@ public class WatchCallBack  implements Watcher ,AsyncCallback.StatCallback, Asyn
 
     }
 
+    /**
+     * 修改、删除、增加了配置之后的watch方法
+     * @param event
+     */
     @Override
     public void process(WatchedEvent event) {
 
